@@ -6,7 +6,7 @@
   MyAliases = {
     ll = "ls -l";
     update = "sudo nixos-rebuild switch --flake /data/dotfiles#devzc0de";
-    upgrade = "nix flake update --flake /data/dotfiles#devzc0de && sudo nixos-rebuild switch --flake /data/dotfiles#devzc0de";
+    upgrade = "nix flake update --flake /data/dotfiles && sudo nixos-rebuild switch --flake /data/dotfiles";
   };
 in {
   programs.zsh = {
