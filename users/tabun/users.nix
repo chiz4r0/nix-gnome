@@ -4,6 +4,8 @@
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   security.sudo.wheelNeedsPassword = false;
+
+  programs.zsh.enable = true; ## harus disini
   users.users.tabun = {
     isNormalUser = true;
     shell = pkgs.zsh;
