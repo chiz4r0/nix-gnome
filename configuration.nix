@@ -107,7 +107,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tabun = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "audio" "video" "disk" "kvm" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -131,12 +131,49 @@
       };
 
       home.packages = with pkgs; [
+        android-studio
+        libreoffice-fresh
+        mpv
+        obsidian
+        remmina
         vscode
+        gnomeExtensions.blur-my-shell
       ];
+      dconf = {
+        enable = true;
+        settings = {
+          "org/gnome/desktop/background" = {
+            color-shading-type = "solid";
+            picture-uri = "file:///data/Pictures/grum.jpg";
+            picture-uri-dark = "file:///data/Pictures/grum.jpg";
+          };
+
+          "org/gnome/desktop/interface" = {
+            color-scheme = "prefer-dark";
+          };
+
+          "org/gnome/mutter" = {
+            experimental-features = [
+              "scale-monitor-framebuffer"
+              "xwayland-native-scaling"
+            ];
+          };
+
+          "org/gnome/shell" = {
+            disable-user-extensions = false;
+            enabled-extensions = with pkgs.gnomeExtensions; [
+              blur-my-shell.extensionUuid
+            ];
+          };
+
+
+        };
+      };
     };
   };
 
   programs.firefox.enable = true;
+  programs.dconf.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -145,6 +182,22 @@
     vim
     wget
   ];
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    league-gothic
+    adwaita-fonts
+    jetbrains-mono
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    corefonts
+    font-awesome
+    source-han-sans
+    source-han-sans-japanese
+    source-han-serif-japanese
+    powerline-fonts
+    powerline-symbols
+  ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   
   system.stateVersion = "25.05"; # Did you read the comment?
