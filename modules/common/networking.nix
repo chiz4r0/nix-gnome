@@ -1,4 +1,4 @@
-{...}:
+{ pkgs, ... }:
 {
   networking.hostName = "devzc0de"; 
   networking.networkmanager.enable = true; 
