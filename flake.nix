@@ -33,7 +33,7 @@
   in
   {
     nixosConfigurations = {
-      cat-linux = lib.nixosSystem {
+      devzc0de = lib.nixosSystem {
         inherit system;
         modules = [
           ./configuration.nix
