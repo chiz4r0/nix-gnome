@@ -10,23 +10,19 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/master"; # or nixos-unstable if available
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs:
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
-
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
     lib = nixpkgs.lib;
-  in
-  {
+  in {
     nixosConfigurations = {
       devzc0de = lib.nixosSystem {
         inherit system;
@@ -36,7 +32,7 @@
         ];
 
         specialArgs = {
-          inherit self inputs pkgs;
+          inherit self inputs;
         };
       };
     };
