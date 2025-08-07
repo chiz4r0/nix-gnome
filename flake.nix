@@ -1,29 +1,25 @@
 {
-  description = "NixOS configuration";
+  description = "NixOS configuration (using unstable)";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/master"; # or nixos-unstable if available
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... } @ inputs:
+  outputs = { self, nixpkgs, ... } @ inputs:
   let
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-
-    unstablePkgs = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
     };
@@ -34,11 +30,13 @@
     nixosConfigurations = {
       devzc0de = lib.nixosSystem {
         inherit system;
+
         modules = [
           ./hosts/devzc0de/configuration.nix
         ];
+
         specialArgs = {
-          inherit self inputs unstablePkgs;
+          inherit self inputs pkgs;
         };
       };
     };
