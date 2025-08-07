@@ -10,7 +10,8 @@
   imports = [
     ../../home/modules/git.nix
     ../../home/modules/programs.nix
-    ../../home/modules/gnome.nix    
+    ../../home/modules/gnome.nix  
+    ../../home/modules/nvim  
     ../../home/modules/zsh.nix
 
   ];
