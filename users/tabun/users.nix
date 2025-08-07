@@ -12,7 +12,6 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-
     users.tabun = import ./home.nix;
   };
 }

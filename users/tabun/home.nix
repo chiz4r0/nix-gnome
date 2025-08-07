@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, unstablePkgs, pkgs, ... }:
 
 {
   home.username = "tabun";
