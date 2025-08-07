@@ -20,12 +20,12 @@
       ../../users/tabun/users.nix
     ];
 
-  # Set your time zone.
+  nix.settings.keep-outputs = true;
+  nix.settings.keep-derivations = true;
   time.timeZone = "Asia/Jakarta";
   zramSwap.enable = true;
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05"; # Did you read the comment?
   nix.settings.experimental-features = ["nix-command" "flakes"];
-
 }
 
