@@ -14,6 +14,7 @@
       ../../modules/common/fonts.nix
       ../../modules/common/gnome.nix
       ../../modules/common/networking.nix
+      ../../modules/common/package.nix
       ../../modules/common/pipewire.nix
       ../../modules/common/tlp.nix
       ../../modules/hardware/laptop.nix
