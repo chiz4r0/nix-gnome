@@ -36,7 +36,7 @@
       devzc0de = lib.nixosSystem {
         inherit system;
         modules = [
-          ./configuration.nix
+          ./hosts/devzc0de/configuration.nix
         ];
         specialArgs = {
           inherit self inputs unstablePkgs;
