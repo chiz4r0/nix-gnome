@@ -1,5 +1,11 @@
 {...}:
 {
-  networking.hostName = "devzc0de"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.hostName = "devzc0de"; 
+  networking.networkmanager.enable = true; 
+  networking.wireguard.enable = true;
+  services.resolved.enable = true;
+  environment.systemPackages = [
+    pkgs.samba
+    pkgs.wireguard-tools
+  ];
 }
